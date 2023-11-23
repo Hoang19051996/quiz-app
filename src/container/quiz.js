@@ -16,13 +16,13 @@ const Quiz = () => {
 const quizAPI = useSelector((state) => state.quiz.quiz);
 
 
-  console.log("quizAPI", quizAPI)
+  console.log("quizAPII", quizAPI)
 
   console.log("quiz", quiz[0])
 
   //deu la mang
 
-  const {  question, choices, correctAnswer } = quizAPI[activeQuestion]
+  const {  question, choices, correctAnswer } = quizAPI[activeQuestion]  ?? {}
 
 
 
@@ -79,7 +79,7 @@ const quizAPI = useSelector((state) => state.quiz.quiz);
           </div>
           <h2>{question}</h2>
           <ul>
-            {choices.map((answer, index) => (
+            {(choices || []).map((answer, index) => (
               <li
                 onClick={() => onAnswerSelected(answer, index)}
                 key={answer}
