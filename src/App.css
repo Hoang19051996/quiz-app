@@ -43,8 +43,7 @@ body {
   font-family: 'Anek Malayalam', sans-serif;
   background: linear-gradient(90.04deg, #800080 0.03%, #ffc0cb 99.96%);
   color: #11052c;
-  display: flex;
-  justify-content: center;
+
   margin: 0;
   padding: 0 30px;
 }
@@ -136,4 +135,23 @@ body {
 .result p span {
   color: #800080;
   font-size: 22px;
+}
+
+.right {
+  display: flex;
+  justify-content: end;
+}
+
+.section01 {
+  padding: 50px;
+  border: solid white 2px;
+  margin: 5px;
+  border-radius: 10px;
+}
+
+.flex-row {
+
+  display: flex;
+
+  justify-content: center;
 }

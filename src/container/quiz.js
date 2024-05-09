@@ -6,8 +6,11 @@ const Quiz = () => {
 
   const [activeQuestion, setActiveQuestion] = useState(0)
   const [selectedAnswer, setSelectedAnswer] = useState('')
+  const [selectedAnswerByText, setSelectedAnswerByText] = useState("")
+
   const [showResult, setShowResult] = useState(false)
   const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null)
+  const [listAnswered, setListAnswered ] = useState([]);
   const [result, setResult] = useState({
     score: 0,
     correctAnswers: 0,
@@ -16,9 +19,7 @@ const Quiz = () => {
 const quizAPI = useSelector((state) => state.quiz.quiz);
 
 
-  console.log("quizAPII", quizAPI)
 
-  console.log("quiz", quiz[0])
 
   //deu la mang
 
@@ -41,6 +42,12 @@ const quizAPI = useSelector((state) => state.quiz.quiz);
 
   const onClickNext = () => {
     setSelectedAnswerIndex(null)
+
+
+
+    console.log("selectedAnswerByText", selectedAnswerByText)
+    console.log("listAnswered", listAnswered)
+    setListAnswered([...listAnswered, selectedAnswerByText]);
     setResult((prev) =>
       selectedAnswer
         ? {
@@ -60,11 +67,25 @@ const quizAPI = useSelector((state) => state.quiz.quiz);
 
   const onAnswerSelected = (answer, index) => {
     setSelectedAnswerIndex(index)
+    if(answer != ""){
+      setSelectedAnswerByText(answer)
+
+    }
+
+    console.log("selectedAnswerByText", selectedAnswerByText)
+
+    console.log("answer", answer)
+
+
+
     if (answer === correctAnswer) {
       setSelectedAnswer(true)
     } else {
       setSelectedAnswer(false)
     }
+    setSelectedAnswerByText(answer)
+
+
   }
 
   const addLeadingZero = (number) => (number > 9 ? number : `0${number}`)

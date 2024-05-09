@@ -8,11 +8,16 @@ import store from "./store/store"
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Quiz from './container/quiz';
 import { QuizAdmin } from './container/Admin';
+import { Home } from './container/home';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/quiz",
     element: <Quiz />,
   },
   {
