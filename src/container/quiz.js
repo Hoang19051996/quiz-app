@@ -201,7 +201,7 @@ const Quiz = () => {
             class="btn btn-dark py-2 px-4 me-3 animated slideInRight"
             // onClick={() => navigate("/combo")}
           >
-            Explore Now
+            Back to homepage
           </p>
       </div>
     </>
