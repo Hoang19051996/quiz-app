@@ -30,7 +30,12 @@ export const Footer = () => {
 
           <div className="col-md-4"> 
           <h4><b>Download our app</b></h4>
-         
+          <ul className="footer-links">
+            <li>Ios</li>
+          
+
+
+          </ul>
           </div>
         </div>
       </div>
