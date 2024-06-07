@@ -4,7 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchQuestions } from "../store/quiz";
 import { Link } from "react-router-dom";
 import NavBar from "../component/NavBar";
-
+import { Footer } from "../component/Footer";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
+import congratulation from "../assets/Muslim graduation-bro (1).png";
+import { width } from "@mui/system";
 const Quiz = () => {
   const [activeQuestion, setActiveQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState("");
@@ -22,7 +26,8 @@ const Quiz = () => {
 
   //deu la mang
 
-  const { question, choices, correctAnswer } = quizAPI[activeQuestion] ?? {};
+  const { question, choices, correctAnswer, type } =
+    quizAPI[activeQuestion] ?? {};
 
   const dispatch = useDispatch();
 
@@ -79,15 +84,18 @@ const Quiz = () => {
 
   const addLeadingZero = (number) => (number > 9 ? number : `0${number}`);
 
+  const percentage = (result.correctAnswers/quizAPI.length)*100 ;
+  percentage.toFixed(0)
   return (
     <>
-        <NavBar />
+      <NavBar />
 
       <div className="main-container-quiz">
         <div className="quiz-container">
           {!showResult ? (
             <div>
               <div>
+                <div className="category"> Topic: {type} </div>
                 <span className="active-question-no">
                   {addLeadingZero(activeQuestion + 1)}
                 </span>
@@ -95,6 +103,7 @@ const Quiz = () => {
                   /{addLeadingZero(quizAPI.length)}
                 </span>
               </div>
+              <br></br>
               <h2>{question}</h2>
               <ul>
                 {(choices || []).map((answer, index) => (
@@ -120,21 +129,64 @@ const Quiz = () => {
             </div>
           ) : (
             <div className="result">
-              <h3>Result</h3>
-              <p>
-                Total Question: <span>{quizAPI.length}</span>
-              </p>
-              <p>
-                Total Score:<span> {result.score}</span>
-              </p>
-              <p>
-                Correct Answers:<span> {result.correctAnswers}</span>
-              </p>
-              <p>
-                Wrong Answers:<span> {result.wrongAnswers}</span>
-              </p>
+              <h2>Congratulations</h2>
+              <div className="congratulation">
+                <img src={congratulation} />
+              </div>
 
-              <div className="question-final">
+              <div className="result-detail">
+              <div className="detail">
+             
+
+                  <span>You answered</span>
+                  <b>{result.correctAnswers} / {quizAPI.length}</b>
+                  <span>question correct</span>
+
+                </div>
+                <div style={{width:80}}>
+                  <CircularProgressbar
+                    value={percentage}
+                    text={`${percentage}%`}
+                    styles={
+                      buildStyles({
+                      
+                      // Rotation of path and trail, in number of turns (0-1)
+                      rotation: 0.25,
+
+                      // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                      strokeLinecap: "butt",
+
+                      // Text size
+                      textSize: "16px",
+
+                      // How long animation takes to go from one percentage to another, in seconds
+                      pathTransitionDuration: 0.5,
+
+                      // Can specify path transition in more detail, or remove it entirely
+                      // pathTransition: 'none',
+
+                      // Colors
+                      pathColor: "#7c89f1",
+                      textColor: "#7c89f1",
+                      trailColor: "#d6d6d6",
+                      backgroundColor: "#3e98c7",
+                      
+                    })}
+                  />
+                </div>
+           
+              </div>
+              
+             <div className="again"> 
+                  <span className="button-again">
+                      Do Again
+                  </span>
+                  
+                  <span className="back-to-home">
+                      Back to Home
+                  </span>
+             </div>
+              {/* <div className="question-final">
                 <div className="question-final-1">
                   1: {quizAPI != "" ? quizAPI[0].question : ""}
                 </div>
@@ -190,20 +242,18 @@ const Quiz = () => {
                 <span className="answer-final">
                   {quizAPI != "" ? quizAPI[4].correctAnswer : ""}
                 </span>
-              </div>
+              </div> */}
             </div>
           )}
         </div>
+        {/* <div >
+        <span className="backHome">
+          Back to homepage
+        </span>
+      </div> */}
       </div>
-      <div className="container backHome" >
-      <p
-            href=""
-            class="btn btn-dark py-2 px-4 me-3 animated slideInRight"
-            // onClick={() => navigate("/combo")}
-          >
-            Back to homepage
-          </p>
-      </div>
+      <br></br>
+      <Footer />
     </>
   );
 };

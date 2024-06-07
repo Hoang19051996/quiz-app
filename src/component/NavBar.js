@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import quizImg from "../assets/quiz.png"
+import quizImg from "../assets/goquiz.png"
 import {
   Collapse,
   Navbar,
@@ -24,21 +24,21 @@ function Example(args) {
   return (
     <div >
       <Navbar expand="md" {...args} >
-        <NavbarBrand href="/"> <img src={quizImg } width={"80%"} /></NavbarBrand>
+        <NavbarBrand href="/"> <img src={quizImg } width={"100%"} /></NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
             <NavItem>
-              <NavLink href="/quiz" style={{color:"#f2d6a1" , fontSize:"20px"}}><br></br>Home</NavLink>
+              <NavLink href="/quiz" style={{color:"#7c89f1", fontSize:"20px"}}>Home</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink style={{color:"#f2d6a1" , fontSize:"20px"}}>
-              <br></br> Contact
+              <NavLink style={{ color:"#7c89f1",fontSize:"20px"}}>
+             Contact
               </NavLink>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret style={{color:"#f2d6a1", fontSize:"20px"}}>
-              <br></br>  Topic
+              <DropdownToggle nav caret style={{ color:"#7c89f1",fontSize:"20px"}}>
+             Topic
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>Javascript</DropdownItem>
@@ -48,7 +48,7 @@ function Example(args) {
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
-          <NavbarText style={{color:"#f2d6a1", fontSize:"20px"}}>Log in / Sign up</NavbarText>
+          <NavbarText style={{color:"#7c89f1", fontSize:"20px"}}>Log in / Sign up</NavbarText>
         </Collapse>
       </Navbar>
     </div>
